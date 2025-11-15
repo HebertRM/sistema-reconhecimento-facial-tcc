@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1016.0"
+            xmlns:fx="http://javafx.com/fxml/1"
+            xmlns="http://javafx.com/javafx/23.0.1"
+            fx:controller="com.example.faceclient.controller.SuporteController">
+
+    <VBox spacing="10" layoutX="20" layoutY="20" prefWidth="600">
+        <Label text="Bem-vindo à área de suporte!"
+               style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+
+        <Label text="Assunto:" />
+        <TextField fx:id="txtAssunto" promptText="Digite o assunto" />
+
+        <Label text="Mensagem:" />
+        <TextArea fx:id="txtMensagem" promptText="Digite a mensagem para o suporte"
+                  prefHeight="250" wrapText="true" />
+
+        <Button text="Enviar"
+                onAction="#onEnviarEmail"
+                style="-fx-font-size: 14px; -fx-padding: 8 20 8 20;" />
+    </VBox>
+
+</AnchorPane>

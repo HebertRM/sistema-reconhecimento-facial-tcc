@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/23.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.faceclient.controller.DispositivoController"
+      spacing="5" style="-fx-border-color: gray; -fx-padding: 10; -fx-background-color: #f2f2f2;">
+    <children>
+        <Label fx:id="lblNomeDispositivo" text="Nome:"/>
+        <Label fx:id="lblCamera" text="Camera IP:"/>
+        <Label fx:id="lblArduino" text="Tipo:"/>
+        <HBox spacing="10">
+            <Button text="Ver" onAction="#onVerCameraDispositivo"/>
+            <Button onAction="#onEditarDispositivo" text="Editar"/>
+            <Button fx:id="btLigarDispositivo" onAction="#onLigardispositivo" text="Ligar"/>
+        </HBox>
+    </children>
+</VBox>

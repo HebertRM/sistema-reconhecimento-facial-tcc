@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1016.0" xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.faceclient.controller.ClientesController">
+
+    <children>
+        <VBox spacing="10" AnchorPane.topAnchor="0.0"
+              AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0"
+              AnchorPane.bottomAnchor="0.0">
+
+            <!-- Padding do VBox principal -->
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15"/>
+            </padding>
+
+            <!-- Barra de pesquisa -->
+            <HBox spacing="10">
+                <TextField fx:id="txtPesquisa"
+                           promptText="Buscar cliente por Nome ou CPF..."
+                           onAction="#buscarClientes"
+                           HBox.hgrow="ALWAYS"/>
+                <Button text="Pesquisar" onAction="#buscarClientes" HBox.hgrow="ALWAYS"/>
+                <!-- Botão atualizar -->
+                <Button text="Atualizar" onAction="#atualizarListaCarregarClientes">
+                    <tooltip>
+                        <Tooltip text="Atualizar a lista de clientes."/>
+                    </tooltip>
+                </Button>
+            </HBox>
+
+            <!-- Lista de clientes -->
+            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+                <content>
+                    <VBox fx:id="listaClientes" spacing="5">
+                        <padding>
+                            <Insets top="5" right="5" bottom="5" left="5"/>
+                        </padding>
+                    </VBox>
+                </content>
+            </ScrollPane>
+
+        </VBox>
+    </children>
+</AnchorPane>

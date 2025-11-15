@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<?import javafx.scene.text.Text?>
+<AnchorPane prefHeight="600.0" prefWidth="1016.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1">
+
+    <Label layoutX="20" layoutY="20"
+           style="-fx-font-size: 20px; -fx-font-weight: bold;"
+           text="Bem-vindo à área de informações sobre o aplicativo!" />
+
+    <Text wrappingWidth="960"
+          layoutX="20" layoutY="70"
+          style="-fx-font-size: 14px; -fx-fill: #333;">
+        Este sistema foi desenvolvido com o objetivo de auxiliar na segurança e
+        controle de acesso utilizando tecnologia de reconhecimento facial baseada
+        em Inteligência Artificial (IA). Ele foi implementado em Java 21 com
+        JavaFX 21 para a interface gráfica e JavaCV 1.5.12 para o processamento
+        de imagens.
+
+        O sistema utiliza os algoritmos Eigenfaces, Fisherfaces e LBPH para
+        análise e identificação de rostos, oferecendo precisão, eficiência e
+        robustez mesmo em ambientes com variações de iluminação e expressão.
+        As imagens de treinamento são armazenadas localmente, e as informações
+        de usuários e registros de acesso são salvas em arquivos CSV, eliminando
+        a necessidade de servidores ou bancos de dados externos. Isso torna o
+        aplicativo leve, simples e ideal para uso offline ou em ambientes
+        acadêmicos e prototipagem.
+
+        O sistema também permite integração com dispositivos externos como
+        microcontroladores para acionamento de travas, catracas ou portas após o
+        reconhecimento facial. Esse recurso amplia sua aplicabilidade em
+        soluções de automação e controle de entrada.
+
+        Desenvolvedor: Elianderson Herbet Rodrigues Moreira
+        Universidade Paulista – UNIP
+    </Text>
+
+</AnchorPane>

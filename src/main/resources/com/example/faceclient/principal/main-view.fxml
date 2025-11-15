@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.faceclient.controller.MainController">
+
+    <!-- Menu lateral -->
+    <VBox prefHeight="600.0" prefWidth="184.0" spacing="10" style="-fx-background-color: #2c3e50; -fx-padding: 10;">
+        <Button onAction="#handleMonitoramento" prefHeight="25.0" prefWidth="150.0" text="Monitoramento" />
+        <Button onAction="#handleClientes" prefHeight="25.0" prefWidth="150.0" text="Clientes" />
+        <Button onAction="#handleCadastros" prefHeight="25.0" prefWidth="150.0" text="Cadastros" />
+        <Button onAction="#handleSuporte" prefHeight="25.0" prefWidth="150.0" text="Suporte" />
+        <Button onAction="#handleSobre" prefHeight="25.0" prefWidth="150.0" text="Sobre" />
+    </VBox>
+
+    <!-- Painel de conteúdo central (Definindo o tamanho para ) -->
+    <AnchorPane fx:id="contentPane" style="-fx-background-color: #ecf0f1;" HBox.hgrow="ALWAYS" />
+
+</HBox>

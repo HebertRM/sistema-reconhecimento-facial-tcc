@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.collections.FXCollections?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.faceclient.controller.CadastrosController"
+            prefHeight="600.0" prefWidth="1016.0">
+
+    <children>
+        <VBox spacing="12" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
+            <children>
+                <Label text="Cadastro de Cliente" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+                <GridPane hgap="10" vgap="10">
+                    <columnConstraints>
+                        <ColumnConstraints halignment="RIGHT" minWidth="120"/>
+                        <ColumnConstraints hgrow="ALWAYS"/>
+                    </columnConstraints>
+
+                    <!-- Dados Pessoais -->
+                    <Label text="Nome Completo:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtNome" promptText="Digite o nome completo" GridPane.rowIndex="0"
+                               GridPane.columnIndex="1"/>
+
+                    <Label text="CPF:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtCpf" promptText="Somente números" GridPane.rowIndex="1"
+                               GridPane.columnIndex="1" />
+
+                    <Label text="Telefone:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtTelefone" promptText="(XX) XXXXX-XXXX" GridPane.rowIndex="2"
+                               GridPane.columnIndex="1"/>
+
+                    <Label text="E-mail:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtEmail" promptText="email@exemplo.com" GridPane.rowIndex="3"
+                               GridPane.columnIndex="1"/>
+
+                    <Label text="Data de Nascimento:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                    <DatePicker fx:id="dateNascimento" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+                    <!-- Endereço / Local -->
+                    <Label text="Endereço:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtEndereco" promptText="Rua, número, bairro" GridPane.rowIndex="5"
+                               GridPane.columnIndex="1"/>
+
+                    <Label text="Status de Acesso:" GridPane.rowIndex="8" GridPane.columnIndex="0"/>
+                    <ComboBox fx:id="comboStatus" GridPane.rowIndex="8" GridPane.columnIndex="1">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="Ativo"/>
+                                <String fx:value="Inativo"/>
+                            </FXCollections>
+                        </items>
+                    </ComboBox>
+                </GridPane>
+
+                <!-- Botões -->
+                <HBox spacing="10" alignment="CENTER_RIGHT">
+                    <Button fx:id="btnLimpar" text="Limpar" onAction="#onLimpar"/>
+                    <Button text="Salvar" onAction="#onSalvar" style="-fx-background-color: #2e8b57; -fx-text-fill: white;"  />
+                    <Button fx:id="btnDeletar" text="Deletar" onAction="#onDeletar" disable="true" visible="false" style="-fx-background-color: #ee3a3a; -fx-text-fill: white;"  />
+                </HBox>
+
+
+                <!-- Carrossel de Fotos (Slide) -->
+
+                <!-- Título + Botão Camera -->
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Fotos Capturadas"
+                           style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+                    <Button fx:id="btnCamera"
+                            text="Camera"
+                            onAction="#onLigarCamera"
+                            style="-fx-background-color: #4682B4; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                </HBox>
+                <!-- Scroll com todas as fotos na horizontal -->
+                <ScrollPane hbarPolicy="ALWAYS"
+                            vbarPolicy="NEVER"
+                            fitToHeight="true"
+                            prefHeight="200"
+                            style="-fx-background-color: transparent;">
+                    <content>
+                        <HBox fx:id="boxFotos" spacing="10" >
+                            <!-- Imagens serão carregadas pelo Controller -->
+                            <padding>
+                                <Insets top="10" right="10" bottom="10" left="10"/>
+                            </padding>
+                        </HBox>
+                    </content>
+                </ScrollPane>
+
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
