@@ -6,6 +6,7 @@ import com.example.faceclient.service.CameraDetectorWindows;
 import com.example.faceclient.model.DispositivoDTO;
 import com.example.faceclient.service.HttpClientService;
 import com.example.faceclient.service.Reconhecimento;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -234,17 +235,25 @@ public class FormDispositivoController {
 
     @FXML
     public void onConectarArduino(ActionEvent actionEvent) {
+        Thread.ofVirtual().unstarted(() -> {
+            Platform.runLater(() -> {
+            Thread.yield();
+            arduinoStatusLabel.setText("Iniciando testes com microcontrolador...");
+            System.out.println("Entrou na thread para testar a conexao com microcontrolador...");
+
             String retornoESP32;
-        try {
-            retornoESP32 = httpClientService.enviarComandoESP32(arduinoIpField.getText().trim(), arduinoPortField.getText().trim(),"Teste");
-            if(retornoESP32.contains("200")){
-                arduinoStatusLabel.setText("ESP32 comunicado com sucesso!");
-            }else{
+            try {
+                retornoESP32 = httpClientService.enviarComandoESP32(arduinoIpField.getText().trim(), arduinoPortField.getText().trim(), "Teste");
+                if (retornoESP32.contains("200")) {
+                    arduinoStatusLabel.setText("ESP32 comunicado com sucesso!");
+                } else {
+                    arduinoStatusLabel.setText("Falha ao comunicar ESP32!");
+                }
+            } catch (Exception e) {
                 arduinoStatusLabel.setText("Falha ao comunicar ESP32!");
             }
-        } catch (Exception e) {
-            arduinoStatusLabel.setText("Falha ao comunicar ESP32!");
-        }
+            });
+        }).start();
     }
 
 
