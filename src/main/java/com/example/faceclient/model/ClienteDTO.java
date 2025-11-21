@@ -41,12 +41,11 @@ public class ClienteDTO {
         this.status = (status.equals("1")) ? true : false;
     }
 
-    public static String getPrimeiroNomePorId(List<ClienteDTO> clientes, int id) {
-        return Objects.requireNonNull(clientes.stream()
+    public static ClienteDTO getClientePorId(List<ClienteDTO> clientes, int id) {
+        return clientes.stream()
                 .filter(c -> c.getId() == id)
-                .map(ClienteDTO::getTxtNome)
                 .findFirst()
-                .orElse(null)).split(" ")[0];
+                .orElse(null);
     }
 
 

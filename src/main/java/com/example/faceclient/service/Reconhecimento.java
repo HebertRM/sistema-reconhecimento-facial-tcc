@@ -93,8 +93,9 @@ public class Reconhecimento {
                         if (predicao == -1) {
                             nome = "Desconhecido";
                         } else {
-                            nome =  ClienteDTO.getPrimeiroNomePorId(clientes,predicao) + " - " + confianca.get(0);
-                            liberarEntradaCliente(nome,predicao);
+                            ClienteDTO clienteDTO =  ClienteDTO.getClientePorId(clientes,predicao);
+                            nome = clienteDTO.getTxtNome().split(" ")[0].trim() + " - " + confianca.get(0);
+                            liberarEntradaCliente(clienteDTO);
                         }
 
                         int x = Math.max(dadosFace.tl().x() - 10, 0);
@@ -204,21 +205,25 @@ public class Reconhecimento {
         }
     }
 
-    private void liberarEntradaCliente(String nome, int id) {
+    private void liberarEntradaCliente(ClienteDTO clienteDTO) {
+        int id = clienteDTO.getId();
+        String primeiroNome = clienteDTO.getTxtNome().split(" ")[0].trim();
         if (logAreaMonitoramento != null) {
             contadorLiberar++;
             if(idRepetido!=id||contadorLiberar>100) {
-                System.out.println("Iniciando a liberação da entrada para o cliente "+nome);
+                System.out.println("Iniciando a liberação da entrada para o cliente "+primeiroNome);
                 idRepetido = id;
                 Thread.ofVirtual().unstarted(() -> {
-                    String primeiroNome, dataAtual;
-                    dataAtual = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd-HH:mm:ss"));
-                    primeiroNome = nome.split("-")[0].trim();
+                    String dataAtual = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd-HH:mm:ss"));
                     contadorLiberar = 0;
                     Thread.yield();
                     log("Cliente identificado <ID=" + id + " | Nome=" + primeiroNome + " | Data=" + dataAtual + ">");
+                    if (!clienteDTO.isStatus()){
+                        log("Cliente "+primeiroNome+" não foi liberado devido ao status inativo. Data=" + dataAtual);
+                        return;
+                    }
                     try {
-                        String retornoArduino = httpClientService.enviarComandoESP32(arduinoIP,arduinoPorta,nome);
+                        String retornoArduino = httpClientService.enviarComandoESP32(arduinoIP,arduinoPorta,primeiroNome);
                         log(retornoArduino);
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
